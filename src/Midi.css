@@ -4,7 +4,7 @@
   border-bottom: none;
   background: #fefefe; }
  .piano-roll-visualizer {
-width: inherit;
+/* width: inherit; */
 overflow: auto; }
  .piano-roll-visualizer svg {
 margin: 2px; }

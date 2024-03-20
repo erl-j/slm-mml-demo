@@ -1,44 +1,13 @@
 [
- {
-  "path": "examples/pitch_set_constraint_c.mid"
- },
- {
-  "path": "examples/slm_replace_onset_offset.mid"
- },
- {
-  "path": "examples/slm_replace_pitch.mid"
- },
- {
-  "path": "examples/pitch_set_constraint_b.mid"
- },
- {
-  "path": "examples/slm_replace_velocity.mid"
- },
- {
-  "path": "examples/slm_replace_pitch_pentatonic.mid"
- },
- {
-  "path": "examples/pitch_set_constraint.mid"
- },
- {
-  "path": "examples/infilling_middle.mid"
- },
- {
-  "path": "examples/slm_replace_instrument.mid"
- },
- {
-  "path": "examples/resample_original.mid"
- },
- {
-  "path": "examples/infilling_box.mid"
- },
- {
-  "path": "examples/infilling_low.mid"
- },
- {
-  "path": "examples/infilling_high.mid"
- },
- {
-  "path": "examples/slm_replace_instrument_w_constraint.mid"
- }
+    {"path": "examples/resample_original.mid"},
+    {"path": "examples/slm_replace_velocity.mid"},
+    {"path": "examples/pitch_set_constraint_c.mid"},
+    {"path": "examples/slm_replace_onset_offset.mid"},
+    {"path": "examples/slm_replace_pitch.mid"},
+    {"path": "examples/slm_replace_pitch_pentatonic.mid"},
+    {"path": "examples/infilling_middle.mid"},
+    {"path": "examples/slm_replace_instrument.mid"},
+    {"path": "examples/infilling_low.mid"},
+    {"path": "examples/infilling_high.mid"},
+    {"path": "examples/slm_replace_instrument_w_constraint.mid"}
 ]

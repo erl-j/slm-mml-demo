@@ -10,7 +10,7 @@ const App = () => {
   const [currentFile, setCurrentFile] = useState(null)
 
   return (
-    <div>
+    <div style={{"height":800, display:"flex", flexDirection:"column"}}>
       {examples.map((ex) =>
         <div key={ex.path}
           onClick={() => {

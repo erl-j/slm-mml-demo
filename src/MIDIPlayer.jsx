@@ -11,6 +11,15 @@ const MIDIPlayer = ({src,isPlaying}) => {
     const containerRef = useRef(null);
 
     useEffect(() => {
+        visualizerRef.current.config = {
+            noteHeight: 4,
+            pixelsPerTimeStep: 32,
+            minPitch: 30,
+            maxPitch: 96,
+        };
+    }, [visualizerRef.current])
+
+    useEffect(() => {
         if (isPlaying) {
             if (playerRef.current) {
                 playerRef.current.stop(); // Stop the player before removing it
@@ -45,13 +54,13 @@ const MIDIPlayer = ({src,isPlaying}) => {
 
     return (
         <div style={{
-            border:"1px solid black"
+            // border:"1px solid black"
         }}>
                 <midi-visualizer
                     src={src}
                     ref={visualizerRef}
                 ></midi-visualizer>
-            <div ref={containerRef} style={{height:"4em",width:"100%"}}>
+            <div ref={containerRef} style={{height:"4em"}}>
             </div>
         </div>
     )
