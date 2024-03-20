@@ -1,31 +1,31 @@
 import { useState, useRef } from 'react'
 import './App.css'
 import MIDIPlayer from './MIDIPlayer'
+import examples from './examples'
 
 const App = () => {
   // const [count, setCount] = useState(0)
-
-  const files = ["generated.mid", "generated_dense.mid"]
+  console.log(examples)
 
   const [currentFile, setCurrentFile] = useState(null)
 
   return (
     <div>
-
-      {files.map((file) =>
-        <div key={file}
+      {examples.map((ex) =>
+        <div key={ex.path}
           onClick={() => {
-            if (currentFile === file) {
+            if (currentFile === ex.path) {
               setCurrentFile(null)
             }
             else {
-                setCurrentFile(file)
+                setCurrentFile(ex.path)
             }
         }}
         >
+          <h3>{ex.path}</h3>
           <MIDIPlayer
-            src={file}
-            isPlaying={currentFile === file}
+            src={ex.path}
+            isPlaying={currentFile === ex.path}
           />
         </div>
       )}

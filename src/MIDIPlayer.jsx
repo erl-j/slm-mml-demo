@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import 'html-midi-player'
+import "./Midi.css"
 
 
 const MIDIPlayer = ({src,isPlaying}) => {
