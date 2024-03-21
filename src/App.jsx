@@ -1,16 +1,14 @@
 import { useState, useRef } from 'react'
 import './App.css'
 import MIDIPlayer from './MIDIPlayer'
-import examples from './examples'
 
-const App = () => {
+const App = ({examples}) => {
   // const [count, setCount] = useState(0)
-  console.log(examples)
 
   const [currentFile, setCurrentFile] = useState(null)
 
   return (
-    <div style={{"height":800, display:"flex", flexDirection:"column"}}>
+    <div style={{"height":"100%","width":"100%",display:"flex", flexDirection:"column", border:"1px solid black"}}>
       {examples.map((ex) =>
         <div key={ex.path}
           onClick={() => {
