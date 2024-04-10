@@ -19,10 +19,10 @@ const App = ({ }) => {
   }
 
   const mlm_example = {
-    "path": `artefacts/eval_cropped_midi/fad_test/${task}/${task === "constrained_generation" ? "" : "_"}mlm_t=${temperature}/nr_${index}_cropped.mid`,
+    "path": 'artefacts/eval_cropped_midi/fad_test/' + task + '/' + (task === "constrained_generation" ? "" : "_") + 'mlm_t=' + temperature + '/nr_' + index + '_cropped.mid',
   }
   const slm_example = {
-    "path": `artefacts/eval_cropped_midi/fad_test/${task}/${task === "constrained_generation" ? "" : "_"}slm_t=${temperature}/nr_${index}_cropped.mid`,
+    "path": 'artefacts/eval_cropped_midi/fad_test/' + task + '/' + (task === "constrained_generation" ? "" : "_") + 'slm_t=' + temperature + '/nr_' + index + '_cropped.mid',
   }
   const examples = [natural_example, mlm_example, slm_example]
 
