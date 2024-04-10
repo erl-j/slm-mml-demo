@@ -30,7 +30,6 @@ const App = ({ }) => {
 
   // use effect that when something changes, it sets current file to null
   useEffect(() => {
-    console.log("current file", currentFile)
     // stop all audio on this page
     setCurrentFile(null)
   }, [task, temperature, index])
