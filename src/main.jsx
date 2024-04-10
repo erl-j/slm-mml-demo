@@ -10,17 +10,7 @@ import paperIndex from './paperIndex'
 
 
 
-const router = createBrowserRouter(
-//   [
-//   {
-//     path: "/slm-demo/paper-generation",
-//     element: <App examples={examples}/>,
-//   },
-//   {
-//     path: "/slm-demo/paper-resample",
-//     element: <App />,
-//   }
-// ]
+const router = createBrowserRouter();
 Object.keys(paperIndex).map((key) => {
   return {
     path: "/slm-demo/paper-"+key,
