@@ -10,14 +10,15 @@ import paperIndex from './paperIndex'
 
 
 
-const router = createBrowserRouter();
-Object.keys(paperIndex).map((key) => {
-  return {
-    path: "/slm-demo/paper-"+key,
-    element: <App examples={paperIndex[key]}/>,
+const router = createBrowserRouter(
+  [
+  {
+    path: "/slm-demo",
+    element: <App/>,
   }
-})
+]
 );
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
