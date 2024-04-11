@@ -7,22 +7,39 @@ const App = ({ }) => {
 
   const n_samples = 100;
 
-  const tasks = ["infilling_high", "infilling_low", "constrained_generation", "infilling_start", "infilling_end", "generate"]
-  const temperatures = ["0.85", "0.9", "1.0"]
+  const tasks = [
+    // "infilling_high", 
+    "infilling_start", 
+    "infilling_end", 
+    "infilling_low", 
+
+    "infilling_high_patched",
+    "pitch_set",
+    // "pitch_onset_set",
+    // "onset_set",
+    // "infilling_box_end",
+    "infilling_box_middle",
+    // "infilling_drums",
+    // "infilling_harmonic",
+    "constrained_generation", 
+
+    "generate", 
+  ]
+  const temperatures = ["0.85", "0.9","0.95", "1.0"]
   const [index, setIndex] = useState(0)
   const [task, setTask] = useState("infilling_high")
   const [temperature, setTemperature] = useState("1.0")
 
 
   const natural_example = {
-    "path": `artefacts/eval_cropped_midi/fad_test/natural/nr_${index}_cropped.mid`,
+    "path": `artefacts/eval_cropped_midi/fad_test_sane/natural/nr_${index}_cropped.mid`,
   }
 
   const mlm_example = {
-    "path": 'artefacts/eval_cropped_midi/fad_test/' + task + '/' + (task === "constrained_generation" ? "" : "_") + 'mlm_t=' + temperature + '/nr_' + index + '_cropped.mid',
+    "path": 'artefacts/eval_cropped_midi/fad_test_sane/' + task + '/' + 'mlm_t=' + temperature + '/nr_' + index + '_cropped.mid',
   }
   const slm_example = {
-    "path": 'artefacts/eval_cropped_midi/fad_test/' + task + '/' + (task === "constrained_generation" ? "" : "_") + 'slm_t=' + temperature + '/nr_' + index + '_cropped.mid',
+    "path": 'artefacts/eval_cropped_midi/fad_test_sane/' + task + '/' + 'slm_t=' + temperature + '/nr_' + index + '_cropped.mid',
   }
   const examples = [natural_example, mlm_example, slm_example]
 
@@ -35,7 +52,7 @@ const App = ({ }) => {
   }, [task, temperature, index])
 
   return (
-    <div>
+    <div style={{ width: "100vw" }}>
       <h1>Sample nr {index}/{n_samples}</h1>
       <div>
 
@@ -61,12 +78,12 @@ const App = ({ }) => {
           </div>
           <div>
             <h3>Task:</h3>
-          {tasks.map((t) =>
-            <button
-              key={t}
-              style={t === task ? { backgroundColor: "lightblue" } : { backgroundColor: "white" }}
-              onClick={() => setTask(t)}>{t}</button>
-          )}
+            {tasks.map((t) =>
+              <button
+                key={t}
+                style={t === task ? { backgroundColor: "lightblue" } : { backgroundColor: "white" }}
+                onClick={() => setTask(t)}>{t}</button>
+            )}
           </div>
         </div>
         <div>
@@ -80,11 +97,12 @@ const App = ({ }) => {
         </div>
 
       </div>
-      <div style={{ display: "flex", flexDirection: "row", border: "1px solid black", width: "100%" }}>
+      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent:"space-evenly" }}>
 
 
         {examples.map((ex) =>
           <div key={ex.path}
+          style={{flex:1,margin:"4px"}}
             onClick={() => {
               if (currentFile === ex.path) {
                 setCurrentFile(null)
