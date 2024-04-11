@@ -16,7 +16,7 @@ const App = ({ }) => {
     "infilling_high_patched",
     "pitch_set",
     // "pitch_onset_set",
-    // "onset_set",
+    "onset_set",
     // "infilling_box_end",
     "infilling_box_middle",
     // "infilling_drums",
@@ -27,7 +27,7 @@ const App = ({ }) => {
   ]
   const temperatures = ["0.85", "0.9","0.95", "1.0"]
   const [index, setIndex] = useState(0)
-  const [task, setTask] = useState("infilling_high")
+  const [task, setTask] = useState("generate")
   const [temperature, setTemperature] = useState("1.0")
 
 
