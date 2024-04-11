@@ -28,7 +28,7 @@ const App = ({ }) => {
   const temperatures = ["0.85", "0.9","0.95", "1.0"]
   const [index, setIndex] = useState(0)
   const [task, setTask] = useState("generate")
-  const [temperature, setTemperature] = useState("1.0")
+  const [temperature, setTemperature] = useState("0.9")
 
 
   const natural_example = {
