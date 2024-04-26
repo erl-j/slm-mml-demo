@@ -5,54 +5,43 @@ import MIDIPlayer from './MIDIPlayer'
 const App = ({ }) => {
   // const [count, setCount] = useState(0)
 
-  const n_samples = 10;
+  const n_samples = 100;
 
   const tasks = [
-    "constrained_generation",
-    "generate",
-    "infilling_box_middle",
-    "infilling_drums",
-    "infilling_end",
-    "infilling_harmonic",
-    "infilling_high",
-    "infilling_low",
-    "infilling_start",
-    "natural",
-    "onset_offset_set",
-    "pitch_onset_offset_set",
+    // "infilling_high", 
+    "infilling_start", 
+    "infilling_end", 
+    "infilling_low", 
+
+    "infilling_high_patched",
     "pitch_set",
-    "variation",    
+    // "pitch_onset_set",
+    // "onset_set",
+    // "infilling_box_end",
+    "infilling_box_middle",
+    // "infilling_drums",
+    // "infilling_harmonic",
+    "constrained_generation", 
+
+    // "generate", 
   ]
-
-
+  const temperatures = ["0.85", "0.9","0.95", "1.0"]
   const [index, setIndex] = useState(0)
-  const [task, setTask] = useState("infilling_end")
-  // const [temperature, setTemperature] = useState("0.9")
+  const [task, setTask] = useState("generate")
+  const [temperature, setTemperature] = useState("0.9")
 
-  let task_suffix = ".."
-  if (task.includes("infilling") || task.includes("_set")){
-    task_suffix = "steps_50_topp_0.0_prior_1.0_enforce_True"
-  }
-  if (task.includes("generate")) {
-    task_suffix = "steps_50_topp_0.5_prior_1.0_enforce_True"
-  }
-  if (task.includes("constrained_generation")) {
-    task_suffix = "steps_50_topp_0.5_prior_1.0_enforce_True"
-  }
-  if (task.includes("variation")) {
-    task_suffix = "steps_50_topp_0.0_prior_0.85_enforce_False"
-  }
 
   const natural_example = {
-    "path": `simplex/natural/nr_${index}.mid`,
+    "path": `artefacts/eval_cropped_midi/fad_test_sane/natural/nr_${index}_cropped.mid`,
   }
 
-  const simplex_example = {
-    "path": `simplex/${task}/${task_suffix}/nr_${index}.mid`,
+  const mlm_example = {
+    "path": 'artefacts/eval_cropped_midi/fad_test_sane/' + task + '/' + 'mlm_t=' + temperature + '/nr_' + index + '_cropped.mid',
   }
-
-
-  const examples = [natural_example, simplex_example]
+  const slm_example = {
+    "path": 'artefacts/eval_cropped_midi/fad_test_sane/' + task + '/' + 'slm_t=' + temperature + '/nr_' + index + '_cropped.mid',
+  }
+  const examples = [natural_example, mlm_example, slm_example]
 
   const [currentFile, setCurrentFile] = useState(null)
 
@@ -60,7 +49,7 @@ const App = ({ }) => {
   useEffect(() => {
     // stop all audio on this page
     setCurrentFile(null)
-  }, [task, index])
+  }, [task, temperature, index])
 
   return (
     <div style={{ width: "100vw" }}>
@@ -98,7 +87,13 @@ const App = ({ }) => {
           </div>
         </div>
         <div>
-      
+          <h3>Temperature:</h3>
+          {temperatures.map((t) =>
+            <button
+              key={t}
+              style={t === temperature ? { backgroundColor: "lightblue" } : { backgroundColor: "white" }}
+              onClick={() => setTemperature(t)}>{t}</button>
+          )}
         </div>
 
       </div>
