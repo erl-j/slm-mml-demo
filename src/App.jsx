@@ -14,7 +14,7 @@ const App = ({ }) => {
     "variation",
     "infilling_high",
     "infilling_low",
-    // "infilling_box_middle",
+    "infilling_box_middle",
     "infilling_middle",
     "replace_bass",
     "replace_drums",
@@ -114,7 +114,7 @@ const App = ({ }) => {
             }}
           >
             <span
-              style={{ fontSize: "12px" }}
+              style={{ color:"white" }}
             >{ex.path}</span>
             <MIDIPlayer
               src={ex.path}
