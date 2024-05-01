@@ -8,30 +8,32 @@ const App = ({ }) => {
   const n_samples = 5;
 
   const tasks = [
-    "generate",
-    "generate_w_constraints",
     // "constrained_generation",
-    "variation",
+    "infilling_middle",
     "infilling_high",
     "infilling_low",
     "infilling_box_middle",
-    "infilling_middle",
     "replace_bass",
     "replace_drums",
     "pitch_set",
+    "variation",
+    "generate",
+    "generate_w_constraints",
   ]
 
   const taskMeta = {
-    "generate": {"title": "Unconditional generation", "description": "Generate a loop from scratch."},
-    "generate_w_constraints": {"title": "Conditional generation", "description": "Generate a loop with constraints. The constraint used here is that we want to restrict pitch to the C major pitch-set, using only Drums, Piano, Guitar, Bass with at least 10 notes per instrument, and between 50 and 250 notes in total."},
-    "variation": {"title": "Variation", "description": "Generate a variation of the loop. We do this by taking our source loop, turning into a probability distribution, and mixing it with a uniform prior."},
-    "infilling_high": {"title": "Infill upper half", "description": "Regenerate the upper half of the loop's pitch range, drums are kept the same."},
-    "infilling_low": {"title": "Infill lower half", "description": "Regenerate the lower half of the loop's pitch range, drums are kept the same."},
-    "infilling_box_middle": {"title": "Infill middle box", "description": "Regenerate upper and lower half of the loop's pitch range for bars 8 to 12, drums are kept the same."},
-    "infilling_middle": {"title": "Infill middle", "description": "Regenerate everything bars 8 to 12 of the loop."},
-    "replace_bass": {"title": "Replace bass", "description": "Replace the bass of the loop"},
-    "replace_drums": {"title": "Replace drums", "description": "Replace the drums of the loop"},
-    "pitch_set": {"title": "Pitch set", "description": "Regenerate all the pitches of the loop. In these examples, the pitches are restricted to the set of pitches in the source loop."}
+    "generate": {"title": "Unconditional generation", "description": "Generate a loop from scratch.", "parameters": "top-p=0.75, T=200 (Number of forward passes)"},
+    "generate_w_constraints": {"title": "Conditional generation", "description": "Generate a loop with constraints. The constraint used here is that we want to restrict pitch to the C major pitch-set, using only Drums, Piano, Guitar, Bass with at least 10 notes per instrument, and between 50 and 250 notes in total.",
+    "parameters": "top-p=0.99, T=300 (Number of forward passes)"},
+    "variation": {"title": "Variation", "description": "Generate a variation of the loop. We do this by taking our source loop, turning into a probability distribution, and mixing it with a uniform prior.",
+    "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
+    "infilling_high": {"title": "Infill upper half", "description": "Regenerate the upper half of the loop's pitch range, drums are kept the same.", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
+    "infilling_low": {"title": "Infill lower half", "description": "Regenerate the lower half of the loop's pitch range, drums are kept the same.", "parameters": "top-p=0.5, T=200 (Number of forward passes)"},
+    "infilling_box_middle": {"title": "Infill middle box", "description": "Regenerate upper and lower half of the loop's pitch range for bars 2 and 3, drums are kept the same.", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
+    "infilling_middle": {"title": "Infill middle", "description": "Regenerate bars 2 and 3 of the loop.", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
+    "replace_bass": {"title": "Replace bass", "description": "Replace the bass of the loop", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
+    "replace_drums": {"title": "Replace drums", "description": "Replace the drums of the loop", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
+    "pitch_set": {"title": "Pitch set", "description": "Regenerate all the pitches of the loop. In these examples, the pitches are restricted to the set of pitches in the source loop.", "parameters": "top-p=0.85, T=300 (Number of forward passes)"},
   }
 
   // const modelsAvailable = [
@@ -117,6 +119,8 @@ const App = ({ }) => {
           <div>
             <h3>Task description:</h3>
             <p>{taskMeta[task].description}</p>
+            <p>Parameters used: {taskMeta[task].parameters}</p>
+
           </div>
 
          
