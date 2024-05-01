@@ -18,7 +18,6 @@ const App = ({ }) => {
     "infilling_middle",
     "replace_bass",
     "replace_drums",
-    "replace_chromatic",
     "pitch_set",
   ]
 
@@ -57,8 +56,13 @@ const App = ({ }) => {
   }, [task, index])
 
   return (
-    <div style={{ width: "100vw" }}>
-      <h1>Sample nr {index}/{n_samples}</h1>
+    <div style={{ width: "100vw", margin:16 }}>
+      <h1> SYMPLEX: Fast, Flexible and Controllable Symbolic Music Generation using
+        Simplex Diffusion</h1>
+      <h2>Demo for ICCC Short Paper Submission</h2> 
+      <p>This website was tested on Chrome (Version 124.0.6367.78)</p>
+
+      <h3>Example nr {index}/{n_samples}</h3>
       <div>
 
         <div>
