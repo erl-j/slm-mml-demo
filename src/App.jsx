@@ -21,15 +21,24 @@ const App = ({ }) => {
     "pitch_set",
   ]
 
+  const taskMeta = {
+    "generate": {"title": "Unconditional generation", "description": "Generate a loop from scratch."},
+    "generate_w_constraints": {"title": "Conditional generation", "description": "Generate a loop with constraints. The constraint used here is that we want to restrict pitch to the C major pitch-set, using only Drums, Piano, Guitar, Bass with at least 10 notes per instrument, and between 50 and 250 notes in total."},
+    "variation": {"title": "Variation", "description": "Generate a variation of the loop. We do this by taking our source loop, turning into a probability distribution, and mixing it with a uniform prior."},
+    "infilling_high": {"title": "Infill upper half", "description": "Regenerate the upper half of the loop's pitch range, drums are kept the same."},
+    "infilling_low": {"title": "Infill lower half", "description": "Regenerate the lower half of the loop's pitch range, drums are kept the same."},
+    "infilling_box_middle": {"title": "Infill middle box", "description": "Regenerate upper and lower half of the loop's pitch range for bars 8 to 12, drums are kept the same."},
+    "infilling_middle": {"title": "Infill middle", "description": "Regenerate everything bars 8 to 12 of the loop."},
+    "replace_bass": {"title": "Replace bass", "description": "Replace the bass of the loop"},
+    "replace_drums": {"title": "Replace drums", "description": "Replace the drums of the loop"},
+    "pitch_set": {"title": "Pitch set", "description": "Regenerate all the pitches of the loop. In these examples, the pitches are restricted to the set of pitches in the source loop."}
+  }
+
   // const modelsAvailable = [
   //   "hz_512_",
   //   "hz_768_"
   // ]
 
-  const samples = []
-
-
-  const stepsAvailable = [5, 10, 25, 50, 100, 200]
 
   const [index, setIndex] = useState(0)
   const [task, setTask] = useState("infilling_middle")
@@ -43,8 +52,15 @@ const App = ({ }) => {
     "path": `simplex_demo_2_website_pp/${task}/nr_${index}.mid`,
   }
 
+  let examples = []
+  if (task === "generate" || task === "generate_w_constraints") {
+    examples = [simplex_example]
 
-  const examples = [natural_example, simplex_example]
+  }
+  else {
+    examples = [natural_example, simplex_example]
+  }
+
 
   const [currentFile, setCurrentFile] = useState(null)
 
@@ -60,7 +76,9 @@ const App = ({ }) => {
       <h1> SYMPLEX: Fast, Flexible and Controllable Symbolic Music Generation using
         Simplex Diffusion</h1>
       <h2>Demo for ICCC Short Paper Submission</h2> 
-      <p>This website was tested on Chrome (Version 124.0.6367.78)</p>
+      <p>This website was tested on Chrome (Version 124.0.6367.78).
+        Note that the colours used to indicate the instruments are not consistent across loops.
+      </p>
 
       <h3>Example nr {index}/{n_samples}</h3>
       <div>
@@ -91,8 +109,14 @@ const App = ({ }) => {
               <button
                 key={t}
                 style={t === task ? { backgroundColor: "lightblue" } : { backgroundColor: "white" }}
-                onClick={() => setTask(t)}>{t}</button>
+                onClick={() => setTask(t)}>{
+                  taskMeta[t].title
+                }</button>
             )}
+          </div>
+          <div>
+            <h3>Task description:</h3>
+            <p>{taskMeta[task].description}</p>
           </div>
 
          
@@ -116,7 +140,8 @@ const App = ({ }) => {
                 setCurrentFile(ex.path)
               }
             }}
-          >
+          > 
+          <h2>{ex.path.includes("natural") ? "Source loop" : "Generation result"}</h2>
             <span
               style={{ color:"white" }}
             >{ex.path}</span>
