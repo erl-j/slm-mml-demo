@@ -44,7 +44,7 @@ const MIDIPlayer = ({src,isPlaying}) => {
             playerRef.current.soundFont = "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus";
 
             playerRef.current.src = src;
-            playerRef.current.loop = true;
+            playerRef.current.loop = false;
             playerRef.current.addVisualizer(visualizerRef.current);
             // document.getElementById("midiPlayer").src = "generated.mid";
             playerRef.current.addEventListener('load', () => {

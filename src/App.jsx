@@ -5,56 +5,50 @@ import MIDIPlayer from './MIDIPlayer'
 const App = ({ }) => {
   // const [count, setCount] = useState(0)
 
-  const n_samples = 10;
+  const n_samples = 5;
 
   const tasks = [
-    "constrained_generation",
     "generate",
-    "infilling_box_middle",
-    "infilling_drums",
-    "infilling_end",
-    "infilling_harmonic",
+    "generate_w_constraints",
+    // "constrained_generation",
+    "variation",
     "infilling_high",
     "infilling_low",
-    "infilling_start",
-    "natural",
-    "onset_offset_set",
-    "pitch_onset_offset_set",
+    // "infilling_box_middle",
+    "infilling_middle",
+    "replace_bass",
+    "replace_drums",
+    "replace_chromatic",
     "pitch_set",
-    "variation",    
   ]
 
+  // const modelsAvailable = [
+  //   "hz_512_",
+  //   "hz_768_"
+  // ]
+
+  const samples = []
+
+
+  const stepsAvailable = [5, 10, 25, 50, 100, 200]
 
   const [index, setIndex] = useState(0)
-  const [task, setTask] = useState("infilling_end")
+  const [task, setTask] = useState("infilling_middle")
   // const [temperature, setTemperature] = useState("0.9")
 
-  let task_suffix = ".."
-  if (task.includes("infilling") || task.includes("_set")){
-    task_suffix = "steps_50_topp_0.0_prior_1.0_enforce_True"
-  }
-  if (task.includes("generate")) {
-    task_suffix = "steps_50_topp_0.5_prior_1.0_enforce_True"
-  }
-  if (task.includes("constrained_generation")) {
-    task_suffix = "steps_50_topp_0.5_prior_1.0_enforce_True"
-  }
-  if (task.includes("variation")) {
-    task_suffix = "steps_50_topp_0.0_prior_0.85_enforce_False"
-  }
-
   const natural_example = {
-    "path": `simplex/natural/nr_${index}.mid`,
+    "path": `simplex_demo_2_website_pp/natural/nr_${index}.mid`,
   }
 
   const simplex_example = {
-    "path": `simplex/${task}/${task_suffix}/nr_${index}.mid`,
+    "path": `simplex_demo_2_website_pp/${task}/nr_${index}.mid`,
   }
 
 
   const examples = [natural_example, simplex_example]
 
   const [currentFile, setCurrentFile] = useState(null)
+
 
   // use effect that when something changes, it sets current file to null
   useEffect(() => {
@@ -96,18 +90,20 @@ const App = ({ }) => {
                 onClick={() => setTask(t)}>{t}</button>
             )}
           </div>
+
+         
         </div>
         <div>
-      
+
         </div>
 
       </div>
-      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent:"space-evenly" }}>
+      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-evenly" }}>
 
 
         {examples.map((ex) =>
           <div key={ex.path}
-          style={{flex:1,margin:"4px"}}
+            style={{ flex: 1, margin: "4px" }}
             onClick={() => {
               if (currentFile === ex.path) {
                 setCurrentFile(null)
@@ -118,7 +114,7 @@ const App = ({ }) => {
             }}
           >
             <span
-              style={{ fontSize: "2px" }}
+              style={{ fontSize: "12px" }}
             >{ex.path}</span>
             <MIDIPlayer
               src={ex.path}
