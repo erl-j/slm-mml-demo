@@ -14,8 +14,8 @@ const MIDIPlayer = ({src,isPlaying}) => {
         visualizerRef.current.config = {
             noteHeight: 4,
             pixelsPerTimeStep: 30,
-            minPitch: 0,
-            maxPitch: 128,
+            minPitch: 24,
+            maxPitch: 96,
         };
     }, [visualizerRef.current])
 

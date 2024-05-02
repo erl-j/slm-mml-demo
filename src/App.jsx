@@ -22,18 +22,58 @@ const App = ({ }) => {
   ]
 
   const taskMeta = {
-    "generate": {"title": "Unconditional generation", "description": "Generate a loop from scratch.", "parameters": "top-p=0.75, T=200 (Number of forward passes)"},
-    "generate_w_constraints": {"title": "Conditional generation", "description": "Generate a loop with constraints. The constraint used here is that we want to restrict pitch to the C major pitch-set, using only Drums, Piano, Guitar, Bass with at least 10 notes per instrument, and between 50 and 250 notes in total.",
-    "parameters": "top-p=0.99, T=300 (Number of forward passes)"},
-    "variation": {"title": "Variation", "description": "Generate a variation of the loop. We do this by taking our source loop, turning into a probability distribution, and mixing it with a uniform prior.",
-    "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
-    "infilling_high": {"title": "Infill upper half", "description": "Regenerate the upper half of the loop's pitch range, drums are kept the same.", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
-    "infilling_low": {"title": "Infill lower half", "description": "Regenerate the lower half of the loop's pitch range, drums are kept the same.", "parameters": "top-p=0.5, T=200 (Number of forward passes)"},
-    "infilling_box_middle": {"title": "Infill middle box", "description": "Regenerate upper and lower half of the loop's pitch range for bars 2 and 3, drums are kept the same.", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
-    "infilling_middle": {"title": "Infill middle", "description": "Regenerate bars 2 and 3 of the loop.", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
-    "replace_bass": {"title": "Replace bass", "description": "Replace the bass of the loop", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
-    "replace_drums": {"title": "Replace drums", "description": "Replace the drums of the loop", "parameters": "top-p=0.75, T=300 (Number of forward passes)"},
-    "pitch_set": {"title": "Pitch set", "description": "Regenerate all the pitches of the loop. In these examples, the pitches are restricted to the set of pitches in the source loop.", "parameters": "top-p=0.85, T=300 (Number of forward passes)"},
+    "generate": {
+      "title": "Unconditional generation",
+      "description": "Generate a loop from scratch without any conditioning/constraints whatsoever. Note that example nr 1 contains no notes.",
+      "parameters": "top-p=0.75, T=200 (Number of forward passes)"
+    },
+    "generate_w_constraints": {
+      "title": "Conditional generation",
+      "description": "Generate a loop with constraints. The constraint used here consists of restricting pitch to the C major pitch-set, using only drums, piano, guitar, bass with at least 10 notes per instrument, and between 50 and 250 notes in total.",
+
+      "parameters": "top-p=0.99, T=300 (Number of forward passes)"
+    },
+    "variation": {
+      "title": "Variation",
+      "description": "Generate a variation of the loop. We do this by taking our source loop, turning it into a one-hot-like probability distribution, and mixing it with a uniform prior.",
+
+      "parameters": "top-p=0.75, T=300 (Number of forward passes)"
+    },
+    "infilling_high": {
+      "title": "Infill upper half",
+      "description": "Regenerate the upper half of the loop's pitch range, drums are kept the same.",
+      "parameters": "top-p=0.75, T=300 (Number of forward passes)"
+    },
+    "infilling_low": {
+      "title": "Infill lower half",
+      "description": "Regenerate the lower half of the loop's pitch range, drums are kept the same.",
+      "parameters": "top-p=0.5, T=200 (Number of forward passes)"
+    },
+    "infilling_box_middle": {
+      "title": "Infill middle box",
+      "description": "Regenerate upper and lower half of the loop's pitch range for bars 2 and 3, drums are kept the same.",
+      "parameters": "top-p=0.75, T=300 (Number of forward passes)"
+    },
+    "infilling_middle": {
+      "title": "Infill middle",
+      "description": "Regenerate bars 2 and 3 of the loop.",
+      "parameters": "top-p=0.75, T=300 (Number of forward passes)"
+    },
+    "replace_bass": {
+      "title": "Replace bass",
+      "description": "Replace the bass of the loop.",
+      "parameters": "top-p=0.75, T=300 (Number of forward passes)"
+    },
+    "replace_drums": {
+      "title": "Replace drums",
+      "description": "Replace the drums of the loop.",
+      "parameters": "top-p=0.75, T=300 (Number of forward passes)"
+    },
+    "pitch_set": {
+      "title": "Replace pitch",
+      "description": "Regenerate all the pitches of the loop. In these examples, the pitches are restricted to the set of pitches in the source loop.",
+      "parameters": "top-p=0.85, T=300 (Number of forward passes)"
+    },
   }
 
   // const modelsAvailable = [
@@ -74,11 +114,13 @@ const App = ({ }) => {
   }, [task, index])
 
   return (
-    <div style={{ width: "100vw", margin:16 }}>
-      <h1> SYMPLEX: Fast, Flexible and Controllable Symbolic Music Generation using
-        Simplex Diffusion</h1>
-      <h2>Demo for ICCC Short Paper Submission</h2> 
+    <div style={{ width: "100vw", margin: 16 }}>
+      <h3> Demo for ICCC Short Paper Submission 172: SYMPLEX: Fast, Flexible and Controllable Symbolic Music Generation using
+        Simplex Diffusion</h3>
       <p>This website was tested on Chrome (Version 124.0.6367.78).
+        <br />
+        Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
+        <br />
         Note that the colours used to indicate the instruments are not consistent across loops.
       </p>
 
@@ -123,7 +165,7 @@ const App = ({ }) => {
 
           </div>
 
-         
+
         </div>
         <div>
 
@@ -144,10 +186,10 @@ const App = ({ }) => {
                 setCurrentFile(ex.path)
               }
             }}
-          > 
-          <h2>{ex.path.includes("natural") ? "Source loop" : "Generation result"}</h2>
+          >
+            <h3>{ex.path.includes("natural") ? "Source loop" : "Generation result"}</h3>
             <span
-              style={{ color:"white" }}
+              style={{ color: "white" }}
             >{ex.path}</span>
             <MIDIPlayer
               src={ex.path}
