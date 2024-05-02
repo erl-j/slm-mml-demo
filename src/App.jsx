@@ -127,29 +127,9 @@ const App = ({ }) => {
         For each task, the examples were generated in one batch using a fixed random seed.
       </p>
 
-      <h3>Example nr {index}/{n_samples}</h3>
       <div>
 
         <div>
-          <button onClick={() => setIndex(
-            // mod n_samples
-            (index - 1 + n_samples) % n_samples
-          )}>previous sample</button>
-          <button
-            onClick={() => setIndex(
-              // mod n_samples
-              (index + 1) % n_samples
-
-            )}>next sample</button>
-          <button
-            onClick={() => {
-              const random = Math.floor(Math.random() * n_samples - 1)
-              // mod n_samples
-              setIndex((random + index + 1) % n_samples)
-            }
-            }>random sample</button>
-          <div>
-          </div>
           <div>
             <h3>Task:</h3>
             {tasks.map((t) =>
@@ -162,10 +142,31 @@ const App = ({ }) => {
             )}
           </div>
           <div>
-            <h3>Task description:</h3>
-            <p>{taskMeta[task].description}</p>
+            
+            <p><b>Task description: </b>{taskMeta[task].description}</p>
             <p>Parameters used: {taskMeta[task].parameters}</p>
 
+          </div>
+          <div>
+            <h4>Example nr {index}/{n_samples}:</h4>
+
+            <button onClick={() => setIndex(
+              // mod n_samples
+              (index - 1 + n_samples) % n_samples
+            )}>previous sample</button>
+            <button
+              onClick={() => setIndex(
+                // mod n_samples
+                (index + 1) % n_samples
+
+              )}>next sample</button>
+            <button
+              onClick={() => {
+                const random = Math.floor(Math.random() * n_samples - 1)
+                // mod n_samples
+                setIndex((random + index + 1) % n_samples)
+              }
+              }>random sample</button>
           </div>
 
 
