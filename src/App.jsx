@@ -122,6 +122,9 @@ const App = ({ }) => {
         Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
         <br />
         Note that the colours used to indicate the instruments are not consistent across loops.
+        <br />
+        The inference parameters top-p and T were set on a task by task basis and are displayed below the task descriptions.
+        For each task, the examples were generated in one batch using a fixed random seed.
       </p>
 
       <h3>Example nr {index}/{n_samples}</h3>
