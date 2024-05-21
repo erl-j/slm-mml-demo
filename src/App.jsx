@@ -115,8 +115,7 @@ const App = ({ }) => {
 
   return (
     <div style={{ margin: 16 }}>
-      <h3> Demo for SYMPLEX: Fast, Flexible and Controllable Symbolic Music Generation using
-        Simplex Diffusion</h3>
+      <h3>Demo for SYMPLEX: Controllable Symbolic Music Generation using Simplex Diffusion with Vocabulary Priors</h3>
       <p>This website was tested on Chrome (Version 124.0.6367.78).
         <br />
         Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
