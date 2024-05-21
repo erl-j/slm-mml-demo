@@ -115,7 +115,7 @@ const App = ({ }) => {
 
   return (
     <div style={{ margin: 16 }}>
-      <h3> Demo for ICCC Short Paper Submission 172: SYMPLEX: Fast, Flexible and Controllable Symbolic Music Generation using
+      <h3> Demo for SYMPLEX: Fast, Flexible and Controllable Symbolic Music Generation using
         Simplex Diffusion</h3>
       <p>This website was tested on Chrome (Version 124.0.6367.78).
         <br />
