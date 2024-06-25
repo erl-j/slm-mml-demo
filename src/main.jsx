@@ -4,6 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from './App.jsx'
+import App2 from './App2.jsx'
 import './index.css'
 import * as ReactDOM from "react-dom/client";
 import paperIndex from './paperIndex'
@@ -12,8 +13,12 @@ import paperIndex from './paperIndex'
 
 const router = createBrowserRouter(
   [
+  // {
+  //   path: "/slm-demo",
+  //   element: <App2/>,
+  // },
   {
-    path: "/slm-demo",
+    path: "/slm-mml-demo",
     element: <App/>,
   }
 ]
