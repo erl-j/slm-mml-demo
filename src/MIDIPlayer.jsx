@@ -22,17 +22,17 @@ const MIDIPlayer = ({src,isPlaying}) => {
     useEffect(() => {
         if (isPlaying) {
 
-            var frames = window.frames;
-            console.log("frames", frames);
-            for (var i = 0; i < frames.length; i++) {
-                var sounds = frames[i].document.getElementsByTagName('midi-player');
-                console.log("sounds", sounds);
-                for (j = 0; j < sounds.length; j++) {
-                    sounds[j].stop();
-                    // remove the player
-                    sounds[j].parentNode.removeChild(sounds[j]);
-                }
-            }
+            // var frames = window.frames;
+            // console.log("frames", frames);
+            // for (var i = 0; i < frames.length; i++) {
+            //     var sounds = frames[i].document.getElementsByTagName('midi-player');
+            //     console.log("sounds", sounds);
+            //     for (j = 0; j < sounds.length; j++) {
+            //         sounds[j].stop();
+            //         // remove the player
+            //         sounds[j].parentNode.removeChild(sounds[j]);
+            //     }
+            // }
             if (playerRef.current) {
                 playerRef.current.stop(); // Stop the player before removing it
                 containerRef.current.removeChild(playerRef.current);
