@@ -21,7 +21,7 @@ const App = ({ }) => {
     },
     "constrained_generation": {
       "title": "Constrained generation",
-      "description": "We restrict the generation to only use pitches and instruments present in the natural reference loop.",
+      "description": "We restrict the generation to only use instruments and note onset beats present in the natural reference loop.",
       "temperature": "0.85",
       "parameters": "top-p=0.99, T=300."
     },
@@ -121,22 +121,44 @@ const App = ({ }) => {
     setCurrentFile(null)
   }, [task, temperature, index])
 
+  const linkTo = (task, index) => {
+    return <span
+    style={{color: "blue", cursor: "pointer",
+    textDecoration: "underline"
+    }}
+    onClick={() => {
+      setTask(task)
+      setIndex(index)
+    }}
+    >{index}</span>
+  }
+
   return (
     <div style={{ width: "100vw" }}>
       <h3>Demo for Steer-by-Prior Editing of Symbolic Music Loops</h3>
-      <p>This website was tested on Chrome (Version 124.0.6367.78).
+
+      <p>
+        This page shows examples generated from a Superposed Language Model (SLM) across several loop generation and editing tasks.
         <br />
-        Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
-        <br />
-        Note that the colours used to indicate the instruments are not consistent across loops.
+        In addition to our proposed Superposed Language Model (SLM), we also provide examples generated with a Masked Language Model (MLM) with restricted sampling for comparison.
         <br />
         We have not cherry picked the examples. All examples were generated with a seed of 0. The natural loops were randomly selected from the test set.
         {/* The inference parameters top-p and T were set on a task by task basis and are displayed below the task descriptions.
         For each task, the examples were generated in one batch using a fixed random seed. */}
       </p>
+      <p>
+        <b> Website Instructions</b>
+        <br />
+        Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
+        <br />
+        Note that the colours used to indicate the instruments are not consistent across loops.
+        <br />
+        This website was tested on Chrome (Version 124.0.6367.78).
+      </p>
+
       <div>
         <div>
-          
+
 
           <div>
           </div>
@@ -145,7 +167,8 @@ const App = ({ }) => {
             {tasks.map((t) =>
               <button
                 key={t}
-                style={{ backgroundColor: t === task ? "lightblue" : "white",
+                style={{
+                  backgroundColor: t === task ? "lightblue" : "white",
                   "margin": "2px",
                   "padding": "4px",
                   "height": "40px",
@@ -165,7 +188,7 @@ const App = ({ }) => {
         </div>
         <div>
           Temperature used: {
-          temperature
+            temperature
           }
           {/* {temperatures.map((t) =>
             <button
@@ -213,8 +236,8 @@ const App = ({ }) => {
             <span
               style={{ fontSize: "20px" }}
             >{
-              ex.path.includes("mlm_t=") ? "MLM w/ restricted sampling" : ex.path.includes("slm_t=") ? "SLM" : "Natural reference"
-            }</span>
+                ex.path.includes("mlm_t=") ? "MLM w/ restricted sampling" : ex.path.includes("slm_t=") ? "SLM" : "Natural reference"
+              }</span>
             <MIDIPlayer
               src={ex.path}
               isPlaying={currentFile === ex.path}
@@ -222,6 +245,16 @@ const App = ({ }) => {
           </div>
         )}
       </div>
+      {/* <div>
+        <h3>Observations</h3>
+        <p>
+          We generally observe that while both the SLM and the MLM produce reasonable outputs across the tasks, the MLM suffers from a particular failure mode in the "replace first half" and "replace second half" tasks.
+          Namely, the MLM tends to place dense blocks of notes across the range it is supposed to generate. 
+          Examples include {linkTo("infill_start",43)}.
+
+        </p>
+      </div> */}
+      
     </div>
 
   )
