@@ -119,7 +119,7 @@ const App = () => {
       for e in range(3)
     ]
 
-    # add up to 10 more drums in last two bars
+    # add up to 10 more drums in last two beats
     e += [
       EventConstraint().intersect(
         { "instrument": { "Drums"}, "onset/beat": { "14", "15", "_"} }
