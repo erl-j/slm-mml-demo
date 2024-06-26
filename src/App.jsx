@@ -33,17 +33,18 @@ const App = ({ }) => {
     },
     "infilling_high_patched": {
       "title": "Replace upper half",
-      "description": "Regenerate the upper half of the natural reference loop's pitch range, drums are kept the same.",
+      "description": "Regenerate the upper half of the pitch range, drums are kept the same.",
       "parameters": "top-p=0.75, T=300."
     },
     "infilling_low": {
       "title": "Replace lower half",
-      "description": "Regenerate the lower half of the natural reference loop's pitch range, drums are kept the same.",
-      "parameters": "top-p=0.5, T=200."
+      "description": "Regenerate the lower half of the pitch range, drums are kept the same.",
+      "parameters": "top-p=0.5, T=200.",
+      "temperature": "1.0",
     },
     "infilling_box_middle": {
       "title": "Replace box",
-      "description": "Regenerate upper half of the natural reference loop's pitch range for bars 2 and 3, drums are kept the same.",
+      "description": "Regenerate upper half of the pitch range for bars 2 and 3, drums are kept the same.",
       "parameters": "top-p=0.75, T=300."
     },
     "infilling_middle": {
@@ -205,7 +206,7 @@ const App = ({ }) => {
           {code}
         </code>
         </pre>
-        Notice that prior that is generated allows between 3 and 13 drum notes to be added to the loop, where 3 have to be any of the tom pitches and the rest can be any drum pitch.
+        The prior allows between 3 and 13 drum notes to be added to the loop, where 3 have to be any of the tom pitches and the rest can be any drum pitch.
         Also notice that we do not specify the exact onset/beat for the tom notes, rather we let the model decide where to place drum notes within the specified range.
         We also emphasize that this is just one interpretation of a tom fill, and different users might want to create different rules to suit their preferences.
       </p>
