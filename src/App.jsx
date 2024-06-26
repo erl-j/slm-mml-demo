@@ -91,6 +91,56 @@ const App = ({ }) => {
 
   ]
 
+  const code = `def add_tom_fill_prior(e):
+    '''
+    Add a tom fill to the loop.
+    input: e: list of EventConstraints
+    output: e: list of EventConstraints
+    '''
+
+    # define tom pitches
+    TOM_PITCHES = {f"{pitch} (Drums)" for pitch in ["48", "50", "45", "47"]}
+
+    # remove inactive notes
+    e = [ev for ev in e if ev.is_active()]
+
+    # remove drums in last 2 beats
+    e = [
+      ev
+          for ev in e
+          if not(
+        not ev.a["onset/beat"].isdisjoint({ "14", "15"})
+              and not ev.a["instrument"].isdisjoint({ "Drums"})
+      )
+      ]
+
+    # add 3 toms from any of the tom pitches.
+    e += [
+      EventConstraint()
+        .intersect(
+          {
+            "instrument": { "Drums"},
+            "pitch": TOM_PITCHES,
+            "onset/beat": { "14", "15", "_"},
+          }
+        )
+        .force_active()
+          for e in range(3)
+      ]
+
+      # add up to 10 more drums in last two bars
+      e += [
+        EventConstraint().intersect(
+          { "instrument": { "Drums"}, "onset/beat": { "14", "15", "_"} }
+        )
+              for _ in range(10)
+          ]
+
+      # pad with inactive notes
+      e += [EventConstraint().force_inactive() for _ in range(N_EVENTS - len(e))]
+    return e`;
+
+
   // print tasks with missing metadata
   console.log(tasks.filter(t => !taskMeta[t]))
   // const temperatures = ["0.85", "0.9","0.95", "1.0"]
@@ -146,9 +196,20 @@ const App = ({ }) => {
 
         Each action is executed by calling an API which generates a prior based on the selected action, the current loop and predefined rules and then iteratively samples the unknown tokens with the SLM.
 
-        {/* As an example, here is the rule for adding a tom fill: */}
+        <br></br>
 
+        To give an idea of what the rules look like, here is the rule for creating the prior for adding a tom fill, written in python. 
+       
+        <pre>
+        <code>
+          {code}
+        </code>
+        </pre>
+        Notice that prior that is generated allows between 3 and 13 drum notes to be added to the loop, where 3 have to be any of the tom pitches and the rest can be any drum pitch.
+        Also notice that we do not specify the exact onset/beat for the tom notes, rather we let the model decide where to place drum notes within the specified range.
+        We also emphasize that this is just one interpretation of a tom fill, and different users might want to create different rules to suit their preferences.
       </p>
+   
       <hr></hr>
       <h2>B) Example outputs</h2>
       <p>
