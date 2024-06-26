@@ -134,9 +134,9 @@ const App = ({ }) => {
   }
 
   return (
-    <div style={{ width: "100vw" }}>
-      <h1>Demo for Steer-by-Prior Editing of Symbolic Music Loops</h1>
-      <h2>Video demo</h2>
+    <div style={{ width: "100vw", margin:64 }}>
+      <h1>Demo for MML' 24 workshop: "Steer-by-Prior Editing of Symbolic Music Loops"</h1>
+      <h2>A) Video demo</h2>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/etuF94r-3hM?si=xdDlTvufmzFId278" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
       <br></br>
@@ -145,10 +145,10 @@ const App = ({ }) => {
 
       Each action is executed by calling an API which generates a prior based on the selected action, the current loop and predefined rules and then iteratively samples the unknown tokens with the SLM.
       </p>
-
-      <h2>Editing tasks examples</h2>
+      <hr></hr>
+      <h2>B) Example outputs</h2>
       <p>
-        This page shows examples generated from a Superposed Language Model (SLM) across several loop generation and editing tasks.
+        This part shows examples generated from a Superposed Language Model (SLM) across several loop generation and editing tasks.
         <br />
         In addition to our proposed Superposed Language Model (SLM), we also provide examples generated with a Masked Language Model (MLM) with restricted sampling for comparison.
         <br />
@@ -157,7 +157,7 @@ const App = ({ }) => {
         For each task, the examples were generated in one batch using a fixed random seed. */}
       </p>
       <p>
-        <b> Website Instructions</b>
+        <b>Instructions</b>
         <br />
         Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
         <br />
