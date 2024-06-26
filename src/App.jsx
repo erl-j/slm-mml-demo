@@ -43,7 +43,7 @@ const App = ({ }) => {
     },
     "infilling_box_middle": {
       "title": "Replace box",
-      "description": "Regenerate upper and lower half of the natural reference loop's pitch range for bars 2 and 3, drums are kept the same.",
+      "description": "Regenerate upper half of the natural reference loop's pitch range for bars 2 and 3, drums are kept the same.",
       "parameters": "top-p=0.75, T=300."
     },
     "infilling_middle": {
@@ -135,8 +135,18 @@ const App = ({ }) => {
 
   return (
     <div style={{ width: "100vw" }}>
-      <h3>Demo for Steer-by-Prior Editing of Symbolic Music Loops</h3>
+      <h1>Demo for Steer-by-Prior Editing of Symbolic Music Loops</h1>
+      <h2>Video demo</h2>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/etuF94r-3hM?si=xdDlTvufmzFId278" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
+      <br></br>
+      <p>
+      This video demonstrates how the SLM can be used to enable various editing tasks in an interactive application.
+
+      Each action is executed by calling an API which generates a prior based on the selected action, the current loop and predefined rules and then iteratively samples the unknown tokens with the SLM.
+      </p>
+
+      <h2>Editing tasks examples</h2>
       <p>
         This page shows examples generated from a Superposed Language Model (SLM) across several loop generation and editing tasks.
         <br />
@@ -246,14 +256,7 @@ const App = ({ }) => {
         )}
       </div>
       <div>
-        <h3>Observations:</h3>
-        <p>
-          We generally observe that while both the SLM and the MLM produce reasonable outputs across the tasks, the MLM suffers from a particular failure mode in the "replace first half" and "replace second half" tasks.
-          <br></br>
-          Namely, the MLM tends to place dense blocks chords in the range it is supposed to generate. 
-          <br></br>
-          Examples where this is particularily salient are sample nr 2, sample nr 10 and sample 24.
-        </p>
+        
       </div>
       
     </div>
