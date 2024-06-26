@@ -135,7 +135,7 @@ const App = ({ }) => {
   }
 
   return (
-    <div style={{ width: "80vw", margin: 64, flexDirection: "column", display: "flex" }}>
+    <div style={{ width: "80vw", margin: 64 }}>
       <h1>Demo for MML' 24 workshop: "Steer-by-Prior Editing of Symbolic Music Loops"</h1>
       <h2>A) Video demo</h2>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/etuF94r-3hM?si=xdDlTvufmzFId278" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
