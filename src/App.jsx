@@ -398,8 +398,8 @@ const App = () => {
                 fontSize: '18px',
                 fontWeight: 'bold',
                 color: '#2c3e50',
-                marginBottom: '15px',
-                paddingTop: '10px'
+                marginBottom: '6px',
+                paddingTop: '4px'
               }}>
                 {ex.path.includes("mlm_t=") ? "MLM w/ restricted sampling" : ex.path.includes("slm_t=") ? "SLM" : "Natural reference"}
               </h3>

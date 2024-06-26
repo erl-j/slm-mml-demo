@@ -9,7 +9,7 @@ const MIDIPlayer = ({ src, isPlaying }) => {
 
     useEffect(() => {
         visualizerRef.current.config = {
-            noteHeight: 4,
+            noteHeight: 3,
             pixelsPerTimeStep: 40,
             minPitch: 24,
             maxPitch: 96,
@@ -52,7 +52,7 @@ const MIDIPlayer = ({ src, isPlaying }) => {
             height: '100%',
             padding: '10px',
             boxSizing: 'border-box',
-            minHeight: '400px',
+            minHeight: '250px',
         }}>
             <midi-visualizer
                 style={{
