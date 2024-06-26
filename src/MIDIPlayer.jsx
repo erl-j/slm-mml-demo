@@ -2,10 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import 'html-midi-player'
 import "./Midi.css"
 
-
-const MIDIPlayer = ({src,isPlaying}) => {
-
-    // use ref 
+const MIDIPlayer = ({ src, isPlaying }) => {
     const visualizerRef = useRef(null);
     const playerRef = useRef(null);
     const containerRef = useRef(null);
@@ -21,65 +18,53 @@ const MIDIPlayer = ({src,isPlaying}) => {
 
     useEffect(() => {
         if (isPlaying) {
-
-            // var frames = window.frames;
-            // console.log("frames", frames);
-            // for (var i = 0; i < frames.length; i++) {
-            //     var sounds = frames[i].document.getElementsByTagName('midi-player');
-            //     console.log("sounds", sounds);
-            //     for (j = 0; j < sounds.length; j++) {
-            //         sounds[j].stop();
-            //         // remove the player
-            //         sounds[j].parentNode.removeChild(sounds[j]);
-            //     }
-            // }
             if (playerRef.current) {
-                playerRef.current.stop(); // Stop the player before removing it
+                playerRef.current.stop();
                 containerRef.current.removeChild(playerRef.current);
-                playerRef.current = null; // Reset playerRef
+                playerRef.current = null;
             }
-            // create midi player
             playerRef.current = document.createElement('midi-player');
             containerRef.current.appendChild(playerRef.current);
             playerRef.current.soundFont = "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus";
-
             playerRef.current.src = src;
             playerRef.current.loop = false;
             playerRef.current.addVisualizer(visualizerRef.current);
-            // document.getElementById("midiPlayer").src = "generated.mid";
             playerRef.current.addEventListener('load', () => {
                 console.log("loaded");
-                // playerRef.current.reload();
                 playerRef.current.start();
-            }
-            )
+            })
         }
         if (!isPlaying) {
             if (playerRef.current) {
-                playerRef.current.stop(); // Stop the player before removing it
+                playerRef.current.stop();
                 containerRef.current.removeChild(playerRef.current);
-                playerRef.current = null; // Reset playerRef
+                playerRef.current = null;
             }
         }
-    }, [isPlaying])
-
+    }, [isPlaying, src])
 
     return (
         <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            height: '100%',
+            padding: '20px',
+            boxSizing: 'border-box'
         }}>
-                <midi-visualizer
+            <midi-visualizer
                 style={{
-                    border: "1px solid black"
-
+                    border: "1px solid black",
+                    maxWidth: '100%',
+                    height: 'auto'
                 }}
-                    src={src}
-                    ref={visualizerRef}
-                ></midi-visualizer>
-            <div ref={containerRef} style={{display:"none"}}>
-            </div>
+                src={src}
+                ref={visualizerRef}
+            ></midi-visualizer>
+            <div ref={containerRef} style={{ display: "none" }}></div>
         </div>
     )
-
 }
 
 export default MIDIPlayer

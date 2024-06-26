@@ -336,25 +336,25 @@ const App = () => {
         </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-            <h3>Sample nr {index}/{n_samples}</h3>
+            <h3>Example nr {index}/{n_samples}</h3>
             <div style={{ display: 'flex', gap: '10px' }}>
               <button onClick={() => setIndex((index - 1 + n_samples) % n_samples)}>
-                previous sample
+                previous example
               </button>
               <button onClick={() => setIndex((index + 1) % n_samples)}>
-                next sample
+                next example
               </button>
               <button onClick={() => {
                 const random = Math.floor(Math.random() * n_samples - 1)
                 setIndex((random + index + 1) % n_samples)
               }}>
-                random sample
+                random example
               </button>
             </div>
           </div>
         </div>
         
-        <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', width: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
           {examples.map((ex, i) => (
             <div
               key={ex.path}
