@@ -245,15 +245,16 @@ const App = ({ }) => {
           </div>
         )}
       </div>
-      {/* <div>
-        <h3>Observations</h3>
+      <div>
+        <h3>Observations:</h3>
         <p>
           We generally observe that while both the SLM and the MLM produce reasonable outputs across the tasks, the MLM suffers from a particular failure mode in the "replace first half" and "replace second half" tasks.
-          Namely, the MLM tends to place dense blocks of notes across the range it is supposed to generate. 
-          Examples include {linkTo("infill_start",43)}.
-
+          <br></br>
+          Namely, the MLM tends to place dense blocks chords in the range it is supposed to generate. 
+          <br></br>
+          Examples where this is particularily salient are sample nr 2, sample nr 10 and sample 24.
         </p>
-      </div> */}
+      </div>
       
     </div>
 
