@@ -51,7 +51,8 @@ const MIDIPlayer = ({ src, isPlaying }) => {
             width: '100%',
             height: '100%',
             padding: '10px',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            minHeight: '400px',
         }}>
             <midi-visualizer
                 style={{

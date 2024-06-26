@@ -8,3 +8,15 @@ body {
 p {
   text-align: "justify";
 }
+
+.app-container {
+  transition: opacity 0.3s ease;
+}
+
+.app-container * {
+  transition: all 0.3s ease;
+}
+
+.example-container {
+  transition: all 0.3s ease;
+}

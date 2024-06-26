@@ -158,7 +158,9 @@ const App = () => {
   }, [task, temperature, index])
 
   return (
-    <div style={{
+    <div 
+    className='app-container'
+    style={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
