@@ -170,6 +170,10 @@ const App = () => {
       boxSizing: 'border-box',
     }}>
       <h1 style={{ textAlign: 'center' }}>Demo for MML' 24 workshop: "Steer-by-Prior Editing of Symbolic Music Loops"</h1>
+      <h2>Nicolas Jonason, Luca Casini and Bob L. T. Sturm</h2>
+      <h3>KTH Royal Institute of Technology, Stockholm, Sweden</h3>
+
+      Welcome to the supplementary material for our paper "Steer-by-Prior Editing of Symbolic Music Loops".
       <h2>A) Demo video</h2>
       <div style={{ width: '100%', aspectRatio: '16 / 9', marginBottom: '20px' }}>
         <iframe
