@@ -184,9 +184,8 @@ const App = ({ }) => {
               style={{
                 backgroundColor: t === task ? "lightblue" : "white",
                 "margin": "2px",
-                "padding": "4px",
+                "padding": "8px",
                 "height": "40px",
-                fontSize: "16px",
 
               }}
               onClick={() => setTask(t)}>{
