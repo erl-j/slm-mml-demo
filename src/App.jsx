@@ -123,27 +123,31 @@ const App = ({ }) => {
 
   const linkTo = (task, index) => {
     return <span
-    style={{color: "blue", cursor: "pointer",
-    textDecoration: "underline"
-    }}
-    onClick={() => {
-      setTask(task)
-      setIndex(index)
-    }}
+      style={{
+        color: "blue", cursor: "pointer",
+        textDecoration: "underline"
+      }}
+      onClick={() => {
+        setTask(task)
+        setIndex(index)
+      }}
     >{index}</span>
   }
 
   return (
-    <div style={{ width: "100vw", margin:64 }}>
+    <div style={{ width: "80vw", margin: 64, flexDirection: "column", display: "flex" }}>
       <h1>Demo for MML' 24 workshop: "Steer-by-Prior Editing of Symbolic Music Loops"</h1>
       <h2>A) Video demo</h2>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/etuF94r-3hM?si=xdDlTvufmzFId278" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
       <br></br>
       <p>
-      This video demonstrates how the SLM can be used to enable various editing tasks in an interactive application.
+        This video demonstrates how the SLM can be used to enable various editing tasks in an interactive application.
 
-      Each action is executed by calling an API which generates a prior based on the selected action, the current loop and predefined rules and then iteratively samples the unknown tokens with the SLM.
+        Each action is executed by calling an API which generates a prior based on the selected action, the current loop and predefined rules and then iteratively samples the unknown tokens with the SLM.
+
+        {/* As an example, here is the rule for adding a tom fill: */}
+
       </p>
       <hr></hr>
       <h2>B) Example outputs</h2>
@@ -156,58 +160,63 @@ const App = ({ }) => {
         {/* The inference parameters top-p and T were set on a task by task basis and are displayed below the task descriptions.
         For each task, the examples were generated in one batch using a fixed random seed. */}
       </p>
-      <p>
-        <b>Instructions</b>
+
+      <p> 
+        <b style={{
+          // underline
+          textDecoration: "underline",
+        }}
+        >Instructions</b>
         <br />
-        Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
+        - Play audio by clicking on a piano roll. Stop the audio by clicking the active piano roll again.
         <br />
-        Note that the colours used to indicate the instruments are not consistent across loops.
+        - Note that the colours used to indicate the instruments are not consistent across loops.
         <br />
-        This website was tested on Chrome (Version 124.0.6367.78).
+        - This website was tested on Chrome (Version 124.0.6367.78).
       </p>
 
       <div>
-        <div>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <h3>Tasks:</h3>
+          {tasks.map((t) =>
+            <button
+              key={t}
+              style={{
+                backgroundColor: t === task ? "lightblue" : "white",
+                "margin": "2px",
+                "padding": "4px",
+                "height": "40px",
+                fontSize: "16px",
 
-
-          <div>
-          </div>
-          <div>
-            <h3>Tasks:</h3>
-            {tasks.map((t) =>
-              <button
-                key={t}
-                style={{
-                  backgroundColor: t === task ? "lightblue" : "white",
-                  "margin": "2px",
-                  "padding": "4px",
-                  "height": "40px",
-
-                }}
-                onClick={() => setTask(t)}>{
-                  taskMeta[t].title
-                }</button>
-            )}
-            <div>
-
-              <p><b>Task description: </b>{taskMeta[task].description}</p>
-              {/* <p><b>Parameters used: </b>{taskMeta[task].parameters}</p> */}
-
-            </div>
-          </div>
+              }}
+              onClick={() => setTask(t)}>{
+                taskMeta[t].title
+              }</button>
+          )}
         </div>
         <div>
-          Temperature used: {
-            temperature
-          }
+
+              <p>
+                <b style={{ textDecoration: "underline" }}>Task description: </b>
+                <br></br>
+                {taskMeta[task].description}
+                <br></br>
+                Temperature used: {
+                  temperature
+                }
+              </p>
+
+              {/* <p><b>Parameters used: </b>{taskMeta[task].parameters}</p> */}
+
+
           {/* {temperatures.map((t) =>
             <button
               key={t}
               style={t === temperature ? { backgroundColor: "lightblue" } : { backgroundColor: "white" }}
               onClick={() => setTemperature(t)}>{t}</button>
           )} */}
-        </div>
 
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <h3>Sample nr {index}/{n_samples}</h3>
         <button onClick={() => setIndex(
           // mod n_samples
@@ -226,7 +235,7 @@ const App = ({ }) => {
             setIndex((random + index + 1) % n_samples)
           }
           }>random sample</button>
-
+          </div>
       </div>
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-evenly" }}>
 
@@ -256,9 +265,11 @@ const App = ({ }) => {
         )}
       </div>
       <div>
-        
+
       </div>
-      
+      </div>
+
+
     </div>
 
   )
