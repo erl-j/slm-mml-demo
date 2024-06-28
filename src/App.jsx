@@ -66,7 +66,7 @@ const App = () => {
         This video demonstrates how the SLM can be used to enable various editing tasks in an interactive application.
         Each action is executed by calling an API which generates a prior based on the selected action, the current loop and predefined rules and then iteratively samples the unknown tokens with the SLM.
         <br></br>
-        We give some pseudocode examples of the server-side implementation of the API below.
+        Below we give some pseudocode examples of the server-side implementation of the API.
       </p>
 
       <div style={{ width: '100%' }}>
@@ -123,7 +123,7 @@ const App = () => {
             <pre style={{
               maxWidth: '100%',
               overflowX: 'auto',
-              background: 'darkblue',
+              background: '#0d0d8d',
               padding: '10px',
               borderRadius: '5px',
               textAlign: 'left' // Ensure code alignment is maintained
