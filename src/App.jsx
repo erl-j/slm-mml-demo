@@ -95,7 +95,8 @@ const App = () => {
         borderRadius: '8px',
         padding: '15px',
         marginBottom: '20px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)'
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+        width: '100%'
       }}>
         <h4 style={{
           color: '#2c3e50',
@@ -122,7 +123,7 @@ const App = () => {
           }}>
             <pre style={{
               maxWidth: '100%',
-              overflowX: 'auto',
+              overflowX: 'scroll',
               background: '#0d0d8d',
               padding: '10px',
               borderRadius: '5px',
