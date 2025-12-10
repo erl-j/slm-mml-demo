@@ -53,7 +53,7 @@ const App = () => {
         <iframe
           width="100%"
           height="100%"
-          src="https://www.youtube.com/embed/mCdI9-re40A?si=d5FqrwNLQALaS4B7"
+          src="https://www.youtube.com/embed/etuF94r-3hM?si=hQQ8z71rwrHqLitq"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
